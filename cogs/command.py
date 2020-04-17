@@ -25,11 +25,10 @@ class command(commands.Cog):
         + "invite : 네온봇 초대 링크를 보내줍니다.\n\n" + "github : 네온봇의 Github 저장소 링크를 보여줍니다.\n\n" +
         "server : 네온봇의 개발 서버의 초대 링크를 보내줍니다.\n\nping : 네온봇의 지연율을 반응 속도에 따라 확인합니다.\nㅤ", inline=False)
         embed.add_field(name="게임 명령어들", value="roll : 주사위를 굴립니다.\n사용 예시 : [prefix]roll [number]\n\n" +
-                            "lol : 리그 오브 레전드의 현재 티어를 조회합니다.\n주의사항 : 닉네임은 무조건 붙여서 입력하셔야 합니다. 그렇지 않으면 Neon은 소환사명을 인식하지 못해요.\nㅤ", inline=False)
+                            "lol : 리그 오브 레전드의 현재 티어를 조회합니다.\n", inline=False)
         embed.add_field(name="서버 관리 명령어들",value="clean : 메시지를 [number]개 만큼 삭제합니다.\n사용 예시 : [prefix]clean [number]\n\n" + 
                             "kick : 서버에서 강제 추방합니다.\n사용 예시 : [prefix]ban @username [reason]\n\n" + 
                             "ban : @username을 [reason]이라는 이유로 서버에서 차단합니다.\n사용 예시 : [prefix]ban @username [reason]\nㅤ", inline=False)
-        embed.add_field(name="코로나 명령어",value="corona : 코로나-19(COVID-19) 현황을 불러옵니다.", inline=False)
         embed.set_thumbnail(url="http://i.imgur.com/VOKVy0m.jpg")
         embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
         await ctx.send(embed=embed)
@@ -71,7 +70,10 @@ class command(commands.Cog):
         else:
             await ctx.send("안타깝게 실패하셨습니다!")
             await ctx.send("원래 주사위의 숫자 : %d" % rollnum)
-            
+
+    @commands.command(name='오이')
+    async def egg(self, ctx) : 
+        await ctx.send("오이 저따 버려!")            
 def setup(bot):
     bot.add_cog(command(bot)) 
     bot.remove_command('help')

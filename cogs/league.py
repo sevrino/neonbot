@@ -19,7 +19,7 @@ class league(commands.Cog):
 
     @commands.command(name='lol')
     @commands.guild_only()
-    async def lol(self, ctx, summonername):
+    async def lol(self, ctx, *, summonername):
 
         with open('./config/setting.json') as json_file:
             json_data = json.load(json_file)
@@ -59,6 +59,12 @@ class league(commands.Cog):
         except KeyError:
             embed=discord.Embed(colour=0xFF0000)
             embed.add_field(name="오류가 발생했습니다.", value="너무 많은 요청으로 인해 오류가 발생했습니다. 나중에 시도해 주세요.")
+            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            await ctx.send(embed=embed)
+
+        except:
+            embed=discord.Embed(colour=0xFF0000)
+            embed.add_field(name="오류가 발생했습니다.", value="LOL API 파싱중 오류가 발생했습니다. 개발서버에 문의해주세요.")
             embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
