@@ -1,17 +1,14 @@
-# -*- coding:utf-8 -*- 
+#-*- coding:utf-8 -*-
 """
 The GNU GENERAL PUBLIC LICENSE
 Copyright (c) 2019-2020 sevrino All rights reserved.
 """
 import discord
 import asyncio
-import re
-import json
 from discord.ext import commands
 from discord.ext.commands import Bot
 import discord
 import random as r
-from time import sleep
 
 class command(commands.Cog):
     def __init__(self, bot):
@@ -26,8 +23,8 @@ class command(commands.Cog):
         "server : 네온봇의 개발 서버의 초대 링크를 보내줍니다.\n\nping : 네온봇의 지연율을 반응 속도에 따라 확인합니다.\nㅤ", inline=False)
         embed.add_field(name="게임 명령어들", value="roll : 주사위를 굴립니다.\n사용 예시 : [prefix]roll [number]\n\n" +
                             "lol : 리그 오브 레전드의 현재 티어를 조회합니다.\n", inline=False)
-        embed.add_field(name="서버 관리 명령어들",value="clean : 메시지를 [number]개 만큼 삭제합니다.\n사용 예시 : [prefix]clean [number]\n\n" + 
-                            "kick : 서버에서 강제 추방합니다.\n사용 예시 : [prefix]ban @username [reason]\n\n" + 
+        embed.add_field(name="서버 관리 명령어들",value="clean : 메시지를 [number]개 만큼 삭제합니다.\n사용 예시 : [prefix]clean [number]\n\n" +
+                            "kick : 서버에서 강제 추방합니다.\n사용 예시 : [prefix]ban @username [reason]\n\n" +
                             "ban : @username을 [reason]이라는 이유로 서버에서 차단합니다.\n사용 예시 : [prefix]ban @username [reason]\nㅤ", inline=False)
         embed.set_thumbnail(url="http://i.imgur.com/VOKVy0m.jpg")
         embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")

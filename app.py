@@ -1,15 +1,12 @@
-# -*- coding:utf-8 -*- 
+#-*- coding:utf-8 -*-
 """
 The GNU GENERAL PUBLIC LICENSE
 Copyright (c) 2019-2020 sevrino All rights reserved.
 """
 import discord
-import asyncio
-import re
 import json
 import logging
 import os
-import youtube_dl
 from discord.ext import commands
 
 #Logging part
@@ -30,7 +27,7 @@ with open('./config/setting.json') as json_file:
 client = commands.Bot(command_prefix = prefix)
 bot = discord.Client()
 
-@client.event 
+@client.event
 async def on_ready():
 	logger.critical("BOT STARTED")
 	print("\n봇을 실행해주셔서 감사합니다! 현재 이 봇의 버전은 %s 입니다. github에서 최신 버전이 있는지 확인해 주세요.\ngithub link : https://github.com/sevrino/neonbot\n" % ver)

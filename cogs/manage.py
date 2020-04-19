@@ -1,14 +1,10 @@
-# -*- coding:utf-8 -*- 
+#-*- coding:utf-8 -*-
 """
 The GNU GENERAL PUBLIC LICENSE
 Copyright (c) 2019-2020 sevrino All rights reserved.
 """
 import discord
-import asyncio
-import re
-import json
 from discord.ext import commands
-from discord import Permissions
 
 class manage(commands.Cog):
     def __init__(self, bot):
