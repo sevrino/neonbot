@@ -2,6 +2,5 @@
   "ver": "1.1.0",
   "default_prefix": "?",
   "riot-api": "riot-api",
-  "youtube-api": "youtube-api",
   "bot_token": "bot_token"
 }

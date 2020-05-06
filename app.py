@@ -33,7 +33,7 @@ bot = discord.Client()
 @client.event
 async def on_ready():
     logger.critical("BOT STARTED")
-    print("\n봇을 실행해주셔서 감사합니다! 현재 이 봇의 버전은 %s 입니다. github에서 최신 버전이 있는지 확인해 주세요.\ngithub link : https://github.com/sevrino/neonbot\n" % ver)
+    print("\n봇을 실행해주셔서 감사합니다! 현재 Neon의 버전은 %s 입니다. github에서 최신 버전이 있는지 확인해 주세요.\ngithub link : https://github.com/sevrino/neonbot\n" % ver)
     print(client.user.name)
     print(client.user.id)
 
