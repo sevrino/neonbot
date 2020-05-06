@@ -14,7 +14,7 @@ class league(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='lol')
+    @commands.command(name='솔랭')
     @commands.guild_only()
     async def lol(self, ctx, *, summonername):
 
@@ -144,16 +144,6 @@ class league(commands.Cog):
             embed.set_footer(
                 text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
-
-    @lol.error()
-    async def solo_error(self, ctx):
-        # FIXME:TypeError: error() missing 1 required positional argument: 'coro'
-        embed = discord.Embed(colour=0xFF0000)
-        embed.add_field(name="오류가 발생했습니다.",
-                        value="알 수 없는 이유로 인하여 오류가 발생했습니다. 개발서버에 문의해 주세요.")
-        embed.set_footer(
-            text="Copyright (c) 2019-2020 sevrino All rights reserved.")
-        await ctx.send(embed=embed)
 
 
 def setup(bot):

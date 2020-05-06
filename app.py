@@ -37,7 +37,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
 
-    game = discord.Game("%scommand" % prefix + " | " + "v.%s" % ver)
+    game = discord.Game("%s도움말" % prefix + " | " + "v.%s" % ver)
     await client.change_presence(status=discord.Status.online, activity=game)
 
 # Cogs Part

@@ -11,7 +11,7 @@ class manage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='kick')
+    @commands.command(name='킥')
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def kick(self, ctx, member: discord.Member, *, reason):
@@ -26,7 +26,7 @@ class manage(commands.Cog):
                 text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
-    @commands.command(name='ban')
+    @commands.command(name='밴')
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def ban(self, ctx, member: discord.Member, *, reason):
@@ -41,7 +41,7 @@ class manage(commands.Cog):
                 text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
-    @commands.command(name='clean')
+    @commands.command(name='삭제')
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def clean(self, ctx, amount):
@@ -52,7 +52,7 @@ class manage(commands.Cog):
         except TypeError:
             await ctx.send("개수를 잘못 지정하셨거나 봇에 오류가 있습니다. 다시 시도해 주세요.")
 
-    @commands.command(name='mute')
+    @commands.command(name='뮤트')
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, member: discord.Member):
@@ -63,7 +63,7 @@ class manage(commands.Cog):
         except discord.errors.NotFound:
             pass
 
-    @commands.command(name='unmute')
+    @commands.command(name='언뮤트')
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def unmute(self, ctx, member: discord.Member):
