@@ -145,6 +145,11 @@ class league(commands.Cog):
                 text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
+    @commands.command(name='자랭')
+    @commands.guild_only()
+    async def teamrank(self, ctx, *, name):
+        pass
+
 
 def setup(bot):
     bot.add_cog(league(bot))
