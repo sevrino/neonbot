@@ -1,14 +1,14 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 """
 The GNU GENERAL PUBLIC LICENSE
 Copyright (c) 2019-2020 sevrino All rights reserved.
 """
 import discord
 import json
-import discord
 from discord.ext import commands
 from discord import Permissions
 import requests as r
+
 
 class league(commands.Cog):
     def __init__(self, bot):
@@ -21,32 +21,36 @@ class league(commands.Cog):
         with open('./config/setting.json') as json_file:
             json_data = json.load(json_file)
             key = json_data["riot-api"]
-            
-        summoner = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonername + "?api_key=" + key
-        
+
+        summoner = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + \
+            summonername + "?api_key=" + key
+
         with open("./config/league/id.json", "wb") as file:
             response = r.get(summoner)
             file.write(response.content)
-        
+
         try:
             with open("./config/league/id.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
                 id = data["id"]
                 sumname = data["name"]
-                
+
         except:
-            embed=discord.Embed(colour=0xFF0000)
-            embed.add_field(name="오류가 발생했습니다.", value="LOL API 파싱중 오류가 발생했습니다. 개발서버에 문의해주세요.")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed = discord.Embed(colour=0xFF0000)
+            embed.add_field(name="오류가 발생했습니다.",
+                            value="LOL API 파싱중 오류가 발생했습니다. 개발서버에 문의해주세요.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
-            
-        tier = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + key
-        
+
+        tier = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + \
+            id + "?api_key=" + key
+
         with open("./config/league/info.json", "wb") as file:
             response = r.get(tier)
             file.write(response.content)
 
-        try:  
+        try:
             with open("./config/league/info.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
                 solo_tier = data[0]["tier"]
@@ -54,79 +58,103 @@ class league(commands.Cog):
                 point = data[0]["leaguePoints"]
 
         except KeyError:
-            embed=discord.Embed(colour=0xFF0000)
-            embed.add_field(name="오류가 발생했습니다.", value="너무 많은 요청으로 인해 오류가 발생했습니다. 나중에 시도해 주세요.")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed = discord.Embed(colour=0xFF0000)
+            embed.add_field(name="오류가 발생했습니다.",
+                            value="너무 많은 요청으로 인해 오류가 발생했습니다. 나중에 시도해 주세요.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         except:
-            embed=discord.Embed(colour=0xFF0000)
-            embed.add_field(name="오류가 발생했습니다.", value="LOL API 파싱중 오류가 발생했습니다. 개발서버에 문의해주세요.")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed = discord.Embed(colour=0xFF0000)
+            embed.add_field(name="오류가 발생했습니다.",
+                            value="LOL API 파싱중 오류가 발생했습니다. 개발서버에 문의해주세요.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "IRON":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="IRON" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x515A5A)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="IRON" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x515A5A)
             embed.set_image(url="https://i.imgur.com/mpUoT5g.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
-            
+
         if solo_tier == "BRONZE":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="BRONZE" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x6E2C00)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="BRONZE" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x6E2C00)
             embed.set_image(url="https://i.imgur.com/LfyvNkt.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "SILVER":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="SILVER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xD0D3D4)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="SILVER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xD0D3D4)
             embed.set_image(url="https://i.imgur.com/731l30m.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "GOLD":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="GOLD" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xF7DC6F)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="GOLD" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xF7DC6F)
             embed.set_image(url="https://i.imgur.com/RRpiMqG.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "PLATINUM":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="PLATINUM" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xABEBC6)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="PLATINUM" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xABEBC6)
             embed.set_image(url="https://i.imgur.com/xOaoBtt.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "DIAMOND":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="DIAMOND" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xBB8FCE)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="DIAMOND" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xBB8FCE)
             embed.set_image(url="https://i.imgur.com/RNFgHcM.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
-        
+
         if solo_tier == "MASTER":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="MASTER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x8E44AD)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="MASTER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x8E44AD)
             embed.set_image(url="https://i.imgur.com/yAT4oPN.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "GRANDMASTER":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="GRANDMASTER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xEC7063)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="GRANDMASTER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0xEC7063)
             embed.set_image(url="https://i.imgur.com/TuMPSw5.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
 
         if solo_tier == "CHALLENGER":
-            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank, 
-            description="CHALLENGER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x0080FF)
+            embed = discord.Embed(title="%s님의 티어입니다." % sumname, value="%s" % solo_tier + " " + "%s" % solo_rank,
+                                  description="CHALLENGER" + " " + "%s" % solo_rank + " " + "%slp" % point, colour=0x0080FF)
             embed.set_image(url="https://i.imgur.com/9jfZLTn.png")
-            embed.set_footer(text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
             await ctx.send(embed=embed)
+
+    @lol.error()
+    async def solo_error(self, ctx):
+        # FIXME:TypeError: error() missing 1 required positional argument: 'coro'
+        embed = discord.Embed(colour=0xFF0000)
+        embed.add_field(name="오류가 발생했습니다.",
+                        value="알 수 없는 이유로 인하여 오류가 발생했습니다. 개발서버에 문의해 주세요.")
+        embed.set_footer(
+            text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(league(bot))
