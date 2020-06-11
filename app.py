@@ -11,7 +11,7 @@ from discord.ext import commands
 
 # Logging part
 logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.WARNING)
 handler = logging.FileHandler(
     filename='./log/bot.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter(
