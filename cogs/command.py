@@ -20,8 +20,8 @@ class command(commands.Cog):
 
         embed = discord.Embed(title="Neon 명령어", colour=0x5C7EBB)
         embed.add_field(name="기본적인 명령어들", value="도움말 : 도움말을 호출합니다.\n\n"
-                        + "초대 : 네온봇 초대 링크를 보내줍니다.\n\n" + "깃허브 : 네온봇의 Github 저장소 링크를 보여줍니다.\n\n" +
-                        "개발서버 : 네온봇의 개발 서버의 초대 링크를 보내줍니다.\n\핑 : 네온봇의 지연율을 반응 속도에 따라 확인합니다.\nㅤ", inline=False)
+                        + "초대 : Neon의 초대 링크를 보내줍니다.\n\n" + "깃허브 : Neon의 Github 저장소 링크를 보여줍니다.\n\n" +
+                        "개발서버 : Neon의 개발 서버의 초대 링크를 보내줍니다.\n\n핑 : 네온봇의 지연율을 반응 속도에 따라 확인합니다.\n\n 개발자 : Neon의 개발자를 보여줍니다.\n", inline=False)
         embed.add_field(name="게임 명령어들", value="주사위 [number] : 주사위를 굴려 number과 맞는지 확인합니다.\n사용 예시 : [prefix]주사위 [number]\n\n" +
                         "솔랭 [소환사명]: 리그 오브 레전드의 현재 솔로 랭크 티어를 조회합니다.\n\n" + "자랭 [소환사명] : 리그 오브 레전드의 현재 자유 랭크 티어를 조회합니다.", inline=False)
         embed.add_field(name="서버 관리 명령어들", value="삭제 : 메시지를 [number]개 만큼 삭제합니다.\n사용 예시 : [prefix]삭제 [number]\n\n" +
@@ -80,6 +80,10 @@ class command(commands.Cog):
     @commands.command(name='오이')
     async def egg(self, ctx):
         await ctx.send("오이 저따 버려!")
+
+    @commands.command(name='개발자')
+    async def egg(self, ctx):
+        await ctx.send("신수#4495")
 
 
 def setup(bot):
