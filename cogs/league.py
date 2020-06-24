@@ -53,9 +53,9 @@ class league(commands.Cog):
         try:
             with open("./config/league/solo/info.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
-                solo_tier = data[1]["tier"]
-                solo_rank = data[1]["rank"]
-                point = data[1]["leaguePoints"]
+                solo_tier = data[0]["tier"]
+                solo_rank = data[0]["rank"]
+                point = data[0]["leaguePoints"]
 
         except KeyError:
             embed = discord.Embed(colour=0xFF0000)
@@ -183,9 +183,9 @@ class league(commands.Cog):
         try:
             with open("./config/league/flex/info.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
-                flex_tier = data[0]["tier"]
-                flex_rank = data[0]["rank"]
-                point = data[0]["leaguePoints"]
+                flex_tier = data[1]["tier"]
+                flex_rank = data[1]["rank"]
+                point = data[1]["leaguePoints"]
 
         except KeyError:
             embed = discord.Embed(colour=0xFF0000)
