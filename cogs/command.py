@@ -50,7 +50,7 @@ class command(commands.Cog):
 
     @commands.command(name='깃허브')
     async def github(self, ctx):
-        embed = discord.Embed(title="네온봇 Github 주소", url="https://github.cim/sevrino/neonbot",
+        embed = discord.Embed(title="네온봇 Github 주소", url="https://github.com/sevrino/neonbot",
                               description="네온봇 오류나, 건의사항을 이곳에 이슈로 작성해주세요!", colour=0x5C7EBB)
         embed.set_author(name="sevrino", url="https://github.com/sevrino",
                          icon_url="https://avatars1.githubusercontent.com/u/39475513?s=460&v=4")
