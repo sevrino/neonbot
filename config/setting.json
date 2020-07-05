@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.1",
+  "ver": "1.2.3",
   "default_prefix": "?",
   "riot-api": "riot-api",
   "bot_token": "bot_token"
