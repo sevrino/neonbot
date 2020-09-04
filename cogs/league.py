@@ -29,8 +29,16 @@ class league(commands.Cog):
 
         with open("./config/league/solo/id.json", "r", encoding="utf-8") as json_file:
             data = json.load(json_file)
-            id = data["id"]
-            sumname = data["name"]
+            try:
+                id = data["id"]
+                sumname = data["name"]
+            except:
+                embed = discord.Embed(colour=0xFF0000)
+                embed.add_field(name="오류가 발생했습니다.",
+                                value="해당 소환사는 존재하지 않는 소환사입니다.")
+                embed.set_footer(
+                    text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+                await ctx.send(embed=embed)
 
         tier = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + \
             id + "?api_key=" + key
@@ -43,14 +51,18 @@ class league(commands.Cog):
             with open("./config/league/solo/info.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
                 queue_type = data[0]["queueType"]
-                if queue_type == "RANKED_FLEX_SR":
-                    solo_tier = data[1]["tier"]
-                    solo_rank = data[1]["rank"]
-                    point = data[1]["leaguePoints"]
-                elif queue_type == "RANKED_SOLO_5x5":
-                    solo_tier = data[0]["tier"]
-                    solo_tier = data[0]["rank"]
-                    point = data[0]["leaguePoints"]
+                try:
+                    if queue_type == "RANKED_FLEX_SR":
+                        solo_tier = data[1]["tier"]
+                        solo_rank = data[1]["rank"]
+                        point = data[1]["leaguePoints"]
+                    elif queue_type == "RANKED_SOLO_5x5":
+                        solo_tier = data[0]["tier"]
+                        solo_tier = data[0]["rank"]
+                        point = data[0]["leaguePoints"]
+                except:
+                    raise AttributeError
+
         except UnboundLocalError:
             embed = discord.Embed(colour=0xFF0000)
             embed.add_field(name="오류가 발생했습니다.",
@@ -162,8 +174,16 @@ class league(commands.Cog):
 
         with open("./config/league/flex/id.json", "r", encoding="utf-8") as json_file:
             data = json.load(json_file)
-            id = data["id"]
-            sumname = data["name"]
+            try:
+                id = data["id"]
+                sumname = data["name"]
+            except:
+                embed = discord.Embed(colour=0xFF0000)
+                embed.add_field(name="오류가 발생했습니다.",
+                                value="해당 소환사는 존재하지 않는 소환사입니다.")
+                embed.set_footer(
+                    text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+                await ctx.send(embed=embed)
 
         tier = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + \
             id + "?api_key=" + key
