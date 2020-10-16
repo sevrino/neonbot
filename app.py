@@ -22,8 +22,16 @@ logger.addHandler(handler)
 with open('./config/setting.json') as json_file:
     json_data = json.load(json_file)
     token = json_data["bot_token"]
+    token_beta = json_data["bot_token_beta"]
     prefix = json_data["default_prefix"]
     ver = json_data["ver"]
+
+# beta bot activation
+beta = True
+if beta == True:
+    token_release = token_beta
+else:
+    token_release = token
 
 # Bot Part
 client = commands.Bot(command_prefix=prefix)
@@ -47,4 +55,4 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
 
-client.run(token)
+client.run(token_release)

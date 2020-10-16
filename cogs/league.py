@@ -23,46 +23,42 @@ class league(commands.Cog):
         summoner = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + \
             summonername + "?api_key=" + key
 
-        with open("./config/league/solo/id.json", "wb") as file:
+        with open("./config/league/id.json", "wb") as file:
             response = r.get(summoner)
             file.write(response.content)
 
-        with open("./config/league/solo/id.json", "r", encoding="utf-8") as json_file:
-            data = json.load(json_file)
-            try:
+        try:
+            with open("./config/league/id.json", "r", encoding="utf-8") as json_file:
+                data = json.load(json_file)
                 id = data["id"]
                 sumname = data["name"]
-            except:
-                embed = discord.Embed(colour=0xFF0000)
-                embed.add_field(name="오류가 발생했습니다.",
-                                value="해당 소환사는 존재하지 않는 소환사입니다.")
-                embed.set_footer(
-                    text="Copyright (c) 2019-2020 sevrino All rights reserved.")
-                await ctx.send(embed=embed)
+        except KeyError:
+            embed = discord.Embed(colour=0xFF0000)
+            embed.add_field(name="오류가 발생했습니다.",
+                            value="해당 플레이어는 존재하지 않습니다.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            await ctx.send(embed=embed)
 
         tier = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + \
             id + "?api_key=" + key
 
         try:
-            with open("./config/league/solo/info.json", "wb") as file:
+            with open("./config/league/info.json", "wb") as file:
                 response = r.get(tier)
                 file.write(response.content)
 
-            with open("./config/league/solo/info.json", "r", encoding="utf-8") as json_file:
+            with open("./config/league/info.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
                 queue_type = data[0]["queueType"]
-                try:
-                    if queue_type == "RANKED_FLEX_SR":
-                        solo_tier = data[1]["tier"]
-                        solo_rank = data[1]["rank"]
-                        point = data[1]["leaguePoints"]
-                    elif queue_type == "RANKED_SOLO_5x5":
-                        solo_tier = data[0]["tier"]
-                        solo_tier = data[0]["rank"]
-                        point = data[0]["leaguePoints"]
-                except:
-                    raise AttributeError
-
+                if queue_type == "RANKED_FLEX_SR":
+                    solo_tier = data[1]["tier"]
+                    solo_rank = data[1]["rank"]
+                    point = data[1]["leaguePoints"]
+                else:
+                    solo_tier = data[0]["tier"]
+                    solo_rank = data[0]["rank"]
+                    point = data[0]["leaguePoints"]
         except UnboundLocalError:
             embed = discord.Embed(colour=0xFF0000)
             embed.add_field(name="오류가 발생했습니다.",
@@ -168,41 +164,41 @@ class league(commands.Cog):
         summoner = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + \
             name + "?api_key=" + key
 
-        with open("./config/league/flex/id.json", "wb") as file:
+        with open("./config/league/id.json", "wb") as file:
             response = r.get(summoner)
             file.write(response.content)
 
-        with open("./config/league/flex/id.json", "r", encoding="utf-8") as json_file:
-            data = json.load(json_file)
-            try:
+        try:
+            with open("./config/league/id.json", "r", encoding="utf-8") as json_file:
+                data = json.load(json_file)
                 id = data["id"]
                 sumname = data["name"]
-            except:
-                embed = discord.Embed(colour=0xFF0000)
-                embed.add_field(name="오류가 발생했습니다.",
-                                value="해당 소환사는 존재하지 않는 소환사입니다.")
-                embed.set_footer(
-                    text="Copyright (c) 2019-2020 sevrino All rights reserved.")
-                await ctx.send(embed=embed)
+        except KeyError:
+            embed = discord.Embed(colour=0xFF0000)
+            embed.add_field(name="오류가 발생했습니다.",
+                            value="해당 플레이어는 존재하지 않습니다.")
+            embed.set_footer(
+                text="Copyright (c) 2019-2020 sevrino All rights reserved.")
+            await ctx.send(embed=embed)
 
         tier = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + \
             id + "?api_key=" + key
         try:
-            with open("./config/league/flex/info.json", "wb") as file:
+            with open("./config/league/info.json", "wb") as file:
                 response = r.get(tier)
                 file.write(response.content)
 
-            with open("./config/league/flex/info.json", "r", encoding="utf-8") as json_file:
+            with open("./config/league/info.json", "r", encoding="utf-8") as json_file:
                 data = json.load(json_file)
-                queue_type = data[1]["queueType"]
+                queue_type = data[0]["queueType"]
                 if queue_type == "RANKED_FLEX_SR":
-                    flex_tier = data[1]["tier"]
-                    flex_rank = data[1]["rank"]
-                    point = data[1]["leaguePoints"]
-                elif queue_type == "RANKED_SOLO_5x5":
                     flex_tier = data[0]["tier"]
                     flex_rank = data[0]["rank"]
                     point = data[0]["leaguePoints"]
+                else:
+                    flex_tier = data[1]["tier"]
+                    flex_rank = data[1]["rank"]
+                    point = data[1]["leaguePoints"]
 
         except UnboundLocalError:
             embed = discord.Embed(colour=0xFF0000)

@@ -1,6 +1,7 @@
 {
-  "ver": "1.2.4",
+  "ver": "1.3.0-beta",
   "default_prefix": "?",
   "riot-api": "riot-api",
-  "bot_token": "bot_token"
+  "bot_token": "bot_token",
+  "bot_token_beta": ""bot_token_beta"
 }
