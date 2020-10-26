@@ -21,14 +21,14 @@ logger.addHandler(handler)
 # Json Part
 with open('./config/setting.json') as json_file:
     json_data = json.load(json_file)
-    
+
     token = json_data["bot_token"]
     token_beta = json_data["bot_token_beta"]
     prefix = json_data["default_prefix"]
     ver = json_data["ver"]
 
 # beta bot activation
-beta = True
+beta = False
 if beta == True:
     token_release = token_beta
 else:
