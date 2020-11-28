@@ -81,7 +81,7 @@ class command(commands.Cog):
         await ctx.send("오이 저따 버려!")
 
     @commands.command(name='개발자')
-    async def egg(self, ctx):
+    async def developer(self, ctx):
         await ctx.send("신수#4495")
 
 
