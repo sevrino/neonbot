@@ -27,7 +27,6 @@ class command(commands.Cog):
         embed.add_field(name="서버 관리 명령어들", value="삭제 : 메시지를 [number]개 만큼 삭제합니다.\n사용 예시 : [prefix]삭제 [number]\n\n" +
                         "킥 [@username] : 서버에서 강제 추방합니다.\n사용 예시 : [prefix]킥 @username [reason]\n\n" +
                         "밴 [@username] : @username을 [reason]이라는 이유로 서버에서 차단합니다.\n사용 예시 : [prefix]밴 @username [reason]\nㅤ", inline=False)
-        embed.set_thumbnail(url="http://i.imgur.com/VOKVy0m.jpg")
         embed.set_footer(
             text="Copyright (c) 2019-2020 sevrino All rights reserved.")
         await ctx.send(embed=embed)
@@ -82,7 +81,7 @@ class command(commands.Cog):
         await ctx.send("오이 저따 버려!")
 
     @commands.command(name='개발자')
-    async def egg(self, ctx):
+    async def developer(self, ctx):
         await ctx.send("신수#4495")
 
 
