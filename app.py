@@ -50,7 +50,7 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=game)
 
 # Cogs Part
-extension = ["cogs.command", "cogs.manage", "cogs.league"]
+extension = ["cogs.command", "cogs.manage", "cogs.league", "cogs.hanriver"]
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):

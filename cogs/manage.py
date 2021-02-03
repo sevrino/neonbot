@@ -53,7 +53,7 @@ class manage(commands.Cog):
         except TypeError:
             await ctx.send("개수를 잘못 지정하셨거나 봇에 오류가 있습니다. 다시 시도해 주세요.")
 
-
+#TODO: 완성시키기
 """
     @commands.command(name='뮤트')
     @commands.guild_only()

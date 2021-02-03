@@ -67,7 +67,7 @@ class command(commands.Cog):
     async def roll(self, ctx, num):
         num = int(num)
         await ctx.send("주사위 굴리는중...")
-        rollnum = randint(1, 6)
+        rollnum = random.randint(1, 6)
         await asyncio.sleep(3.0)
 
         if rollnum == num:
